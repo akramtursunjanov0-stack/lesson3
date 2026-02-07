@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Люди</title>
+</head>
+<body>
+<h1>Список людей</h1>
+
+{% for person in persons %}
+    <h3>{{ person.last_name }} {{ person.first_name }}</h3>
+
+    <p>Категории:</p>
+    <ul>
+        {% for category in person.categories.all %}
+            <li>{{ category.name }}</li>
+        {% empty %}
+            <li>Нет категории</li>
+        {% endfor %}
+    </ul>
+
+    <p>Отзывы:</p>
+    <ul>
+        {% for review in person.reviews.all %}
+            <li>{{ review.text }} ({{ review.rating }})</li>
+        {% empty %}
+            <li>Отзывов нет</li>
+        {% endfor %}
+    </ul>
+
+    <hr>
+{% endfor %}
+
+</body>
+</html>
